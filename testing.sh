@@ -1,4 +1,2 @@
-cd build
-cmake ..
-make
-./banking_system
+g++ -o main.out main.cpp accountholder.cpp
+./main.out
