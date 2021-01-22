@@ -1,2 +1,3 @@
-g++ -o main.out main.cpp bank.cpp accountholder.cpp
+make
+##g++ -o main.out main.cpp bank.cpp accountholder.cpp
 ./main.out

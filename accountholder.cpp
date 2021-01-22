@@ -66,3 +66,8 @@ std::ostream& operator<<(std::ostream& out, const AccountHolder& account){
 void AccountHolder::toList(){
     std::cout << id << '\t' << name << '\t' << address << '\t' << phone << '\n';  
 }
+
+//Returns ID
+int AccountHolder::getID(){
+    return this->id;
+}

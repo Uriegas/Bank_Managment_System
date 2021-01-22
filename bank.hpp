@@ -2,34 +2,34 @@
 #include <sstream>
 #include <fstream>
 #include <vector>
+#include <map>
 
 class Bank{
 private:
     //Current accounts loaded in program
     std::vector<AccountHolder> accounts;
+//    std::hash<AccountHolder> acc;
 public:
     int menu();
     //Create account interface
     void creatAccount();
     //update info interface
     void updateAccount();
-    /*
     //transactions interface
     void transaction();
     //details of account interface
     void details();
-    //remove account interface
-    void remove();
     //Erase an specific account
-    void erase(AccountHolder a);
+    void erase();
     //Print all accounts
     void viewlist();
 
+    /*
     //Helper functions
     //Loads accounts in file
     void loadAccounts();
     */
     dob string2dob(std::string buffer);
-    //Returns id of searched account
-    AccountHolder search(int id);
+    //Search account interface
+    int search();
 };

@@ -14,7 +14,8 @@ int Bank::menu(){
               << "3. Transactions" << '\n'
               << "4. View details of existing account" << '\n'
               << "5. Remove existing account" << '\n'
-              << "6. Accounts List" << std::endl;
+              << "6. Accounts List" << '\n'
+              << "7. Exit" << std::endl;
               std::cin.clear();
     
     std::getline(std::cin, buffer);
@@ -28,7 +29,6 @@ int Bank::menu(){
     case 2:
         updateAccount();
         break;
-        /*
     case 3:
         transaction();
         break;
@@ -36,10 +36,12 @@ int Bank::menu(){
         details();
         break;
     case 5:
-        remove();
+        erase();
         break;
-        */
     case 6:
+        viewlist();
+        break;
+    case 7:
         return 0;
         break;
     default:
@@ -103,8 +105,107 @@ void Bank::creatAccount(){
     std::getline(std::cin, buffer);
     std::stringstream(buffer) >> money;
 
-    AccountHolder tmp(100, name, dateofbirth, citizenship_no, address, phone, money, account_type);
+    AccountHolder tmp(001, name, dateofbirth, citizenship_no, address, phone, money, account_type);
+//    accounts.insert(std::pair<int, AccountHolder>(001, tmp));
+    accounts.push_back(tmp);
 
+}
+
+void Bank::updateAccount(){ 
+    int id = search();
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i].getID() == id){
+            std::string new_address, new_phone, buff;
+
+            std::cout << "\nPlease enter the new address: ";
+            std::cin.clear();
+            std::getline(std::cin, buff);
+            std::stringstream(buff) >> new_address;
+
+            std::cout << "Please enter the new phone number: ";
+            std::cin.clear();
+            std::getline(std::cin, buff);
+            std::stringstream(buff) >> new_phone;
+            accounts[i].edit(new_address, new_phone);
+            return;
+        }
+    }
+    std::cout << "Account not found!!!";
+        
+}
+
+//transactions interface
+void Bank::transaction(){
+    int id = search();
+    
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i].getID() == id){
+            std::string buff;
+            float quanta;
+            int selection;
+            parameter par;
+            std::cout << "\nMovements."
+                        << "\n1. Withdraw"
+                        << "\n2. Deposit"
+                        << "\nEnter the selected action: ";
+            std::cin.clear();
+            std::getline(std::cin, buff);
+            std::stringstream(buff) >> selection;
+            par = (parameter)selection;
+            accounts[i].transact(quanta, par);
+            return;
+        }
+    }
+    std::cout << "Account not found!!!";
+}
+
+//details of account interface
+void Bank::details(){
+    int id = search();
+    
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i].getID() == id){
+            std::cout << accounts[i];
+            return;
+        }
+    }
+    std::cout << "Account not found!!!";
+}
+
+//This functions doesnt work yet
+//Erase an specific account
+void Bank::erase(){
+    int id = search();
+    
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i].getID() == id){
+            accounts.erase();
+            std::find()
+            std::cout << accounts[i];
+            return;
+        }
+    }
+    std::cout << "Account not found!!!";
+}
+
+//Print all accounts
+void Bank::viewlist(){
+    std::cout << "\nList of Accounts.\n";
+    for(int i = 0; i < accounts.size(); i++){
+        accounts[i].toList();
+    }
+}
+
+//Helper functions
+int Bank::search(){
+    std::string buff;
+    int id;
+
+    std::cout << "Enter account ID (Number): ";
+    std::cin.clear();
+    std::getline(std::cin, buff);
+    std::stringstream(buff) >> id;
+    return id;
 }
 
 dob Bank::string2dob(std::string buffer){
@@ -114,8 +215,4 @@ dob Bank::string2dob(std::string buffer){
     year = (int)buffer[6-9];
 
     return dob(day, month, year);
-}
-
-void Bank::updateAccount(){
-    
 }

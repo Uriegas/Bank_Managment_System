@@ -25,6 +25,9 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const AccountHolder& account);
     //Print in list mode
     void toList();
+
+    //Returns ID
+    int getID();
 private:
     //Provided by the user
     std::string name;
