@@ -176,11 +176,14 @@ void Bank::details(){
 //Erase an specific account
 void Bank::erase(){
     int id = search();
-    
+//    std::remove_if( accounts.begin(), accounts.end(), search_id(id) );
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i].getID() == id){
-            accounts.erase();
-            std::find()
+//            accounts.erase(accounts.begin()+i);
+//            accounts.erase();
+//            std::find(accounts.begin(), accounts.end(), );
+//            std::__find_if(accounts.begin(), accounts.end(),);
+//            std::remove_if( accounts.begin(), accounts.end(), search_id(id) );
             std::cout << accounts[i];
             return;
         }
@@ -190,10 +193,14 @@ void Bank::erase(){
 
 //Print all accounts
 void Bank::viewlist(){
-    std::cout << "\nList of Accounts.\n";
-    for(int i = 0; i < accounts.size(); i++){
-        accounts[i].toList();
+    if( !accounts.empty() ){
+        std::cout << "\nList of Accounts.\n";
+        for(int i = 0; i < accounts.size(); i++){
+            accounts[i].toList();
+        }
     }
+    else
+        std::cout << "\n Empty List\n";
 }
 
 //Helper functions
@@ -206,6 +213,13 @@ int Bank::search(){
     std::getline(std::cin, buff);
     std::stringstream(buff) >> id;
     return id;
+}
+
+bool Bank::search_id(int id){
+    for(int i = 0; i < accounts.size(); i++)
+        if( id == accounts[i].getID() )
+            return true;
+    return false;
 }
 
 dob Bank::string2dob(std::string buffer){

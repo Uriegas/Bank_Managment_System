@@ -4,7 +4,7 @@ enum parameter { WITHDRAW, DEPOSIT };
 //Cannot deposit or withdraw in fixed accounts
 enum acc_type { SAVING, CURRENT, FIXED_1Y, FIXED_2Y, FIXED_3Y };
 
-struct dob{
+class dob{
 public:
     int day, month, year;
     dob(int a, int b, int c);

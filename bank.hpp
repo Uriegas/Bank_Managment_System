@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 class Bank{
 private:
@@ -32,4 +33,6 @@ public:
     dob string2dob(std::string buffer);
     //Search account interface
     int search();
+    //Search by id and returns bool
+    bool search_id(int id);
 };
