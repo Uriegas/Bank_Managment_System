@@ -1,6 +1,7 @@
 #include <iostream>
 
 enum parameter { WITHDRAW, DEPOSIT };
+//Cannot deposit or withdraw in fixed accounts
 enum acc_type { SAVING, CURRENT, FIXED_1Y, FIXED_2Y, FIXED_3Y };
 
 struct dob{
@@ -15,7 +16,7 @@ public:
 class AccountHolder{
 public:
     //Constructor (New account function)
-    AccountHolder(int id, std::string name, const dob& dob, int ine, std::string address, std::string phone, float cash, acc_type account_type);
+    AccountHolder(int id, std::string name, const dob& dob, std::string ine, std::string address, std::string phone, float cash, acc_type account_type);
     //Edit account function
     void edit(std::string new_address, std::string new_phone);
     //Withdraw and deposit function
@@ -28,7 +29,7 @@ private:
     //Provided by the user
     std::string name;
     dob dateofbirth;
-    int citizenship_no;
+    std::string citizenship_no;
     std::string address; 
     std::string phone;
     float money;

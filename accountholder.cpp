@@ -18,7 +18,7 @@ std::ostream& operator<<(std::ostream& out, const dob& birth){
 
 //***************AccountHolder Functions******************
 //Constructor (New account function)
-AccountHolder::AccountHolder(int id, std::string name, const dob& date, int ine, std::string address, std::string phone, float cash, acc_type account_type) :dateofbirth(date){
+AccountHolder::AccountHolder(int id, std::string name, const dob& date, std::string ine, std::string address, std::string phone, float cash, acc_type account_type) :dateofbirth(date){
     this->id = id;
     this->name = name;
     this->citizenship_no = ine;
@@ -48,14 +48,15 @@ bool AccountHolder::transact(float quantity, parameter par){
 
 //Print function
 std::ostream& operator<<(std::ostream& out, const AccountHolder& account){
-    out << "Detailed Account Information of Account:" << account.id
+    out << "***************Detailed Information of Account****************" << '\n'
+        << "Account Number:" << '\t' << account.id << '\n'
         << "AccountHolder Name:" << '\t' << account.name << '\n' 
-        << "Date of Birthday:" << '\t' << account.dateofbirth
+        << "Date of Birthday:" << '\t' << account.dateofbirth << '\n'
         << "Citizenship Number:" << '\t' << account.citizenship_no << '\n'
         //Pending to add age, need a function to read current date.
-        << "Address:" << '\t' << account.address << '\n'
-        << "Account Type" << '\t' << account.account_type << '\n'
-        << "Phone:" << '\t' << account.phone << '\n'
+        << "Address:" << "\t\t" << account.address << '\n'
+        << "Account Type" << "\t\t" << account.account_type << '\n'
+        << "Phone Number:" << "\t\t" << account.phone << '\n'
         //Balance of Deposit(+) and Withdraws(-). Same: Need current date.
         << "Current Balance:" << '\t' << "$ " << account.money << '\n';
         return out;
