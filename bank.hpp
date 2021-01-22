@@ -11,9 +11,9 @@ public:
     int menu();
     //Create account interface
     void creatAccount();
-    /*
     //update info interface
     void updateAccount();
+    /*
     //transactions interface
     void transaction();
     //details of account interface
@@ -28,6 +28,8 @@ public:
     //Helper functions
     //Loads accounts in file
     void loadAccounts();
-    dob string2dob(std::string buffer);
     */
+    dob string2dob(std::string buffer);
+    //Returns id of searched account
+    AccountHolder search(int id);
 };

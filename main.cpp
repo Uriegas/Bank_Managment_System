@@ -17,8 +17,6 @@ int main(){
     std::cout << uriegas << '\n' << lizbeth << std::endl;
     */
 
-
-
    Bank bank;
    bank.menu();
 }
