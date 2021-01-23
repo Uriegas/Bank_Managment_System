@@ -5,50 +5,46 @@ int Bank::menu(){
     int option;
 
     while (true){
-    buffer.empty();
-    std::cout << buffer;
-    std::cout << "****************Banking Managment System****************" << '\n'
-              << "Select the action(Input Number)." << '\n'
-              << "1. Create New Accout" << '\n'
-              << "2. Update information of existing accout" << '\n'
-              << "3. Transactions" << '\n'
-              << "4. View details of existing account" << '\n'
-              << "5. Remove existing account" << '\n'
-              << "6. Accounts List" << '\n'
-              << "7. Exit" << std::endl;
-              std::cin.clear();
-    
-    std::getline(std::cin, buffer);
-    std::stringstream(buffer) >> option;
+        buffer.empty();
+        std::cout << "****************Banking Managment System****************" << '\n'
+                << "Select the action(Input Number)." << '\n'
+                << "1. Create New Accout" << '\n'
+                << "2. Update information of existing accout" << '\n'
+                << "3. Transactions" << '\n'
+                << "4. View details of existing account" << '\n'
+                << "5. Remove existing account" << '\n'
+                << "6. Accounts List" << '\n'
+                << "7. Exit" << std::endl;
+        
+        std::getline(std::cin, buffer);
+        std::stringstream(buffer) >> option;
 
-    switch (option)
-    {
-    case 1:
-        creatAccount();
-        break;
-    case 2:
-        updateAccount();
-        break;
-    case 3:
-        transaction();
-        break;
-    case 4:
-        details();
-        break;
-    case 5:
-        erase();
-        break;
-    case 6:
-        viewlist();
-        break;
-    case 7:
-        return 0;
-        break;
-    default:
-        menu();
-        break;
-    }
-
+        switch (option){
+        case 1:
+            creatAccount();
+            break;
+        case 2:
+            updateAccount();
+            break;
+        case 3:
+            transaction();
+            break;
+        case 4:
+            details();
+            break;
+        case 5:
+            erase();
+            break;
+        case 6:
+            viewlist();
+            break;
+        case 7:
+            return 0;
+            break;
+        default:
+            menu();
+            break;
+        }
     }
 }
 
@@ -65,27 +61,22 @@ void Bank::creatAccount(){
     int selection;
 
     std::cout << "Enter Name:";
-    std::cin.clear();
-    std::getline(std::cin, buffer);
-    std::stringstream(buffer) >> name;
+    std::getline(std::cin, name);
+//    std::stringstream(buffer) >> name;
 
     std::cout << "Enter Date of Birth: ";
-    std::cin.clear();
     std::getline(std::cin, buffer);
-   // dateofbirth = string2dob(buffer);//Not defined yet
+    dateofbirth = string2dob(buffer);
     
     std::cout << "Enter CURP: " ;
-    std::cin.clear();
     std::getline(std::cin, buffer);
     std::stringstream(buffer) >> citizenship_no;
 
     std::cout << "Enter address: " ;
-    std::cin.clear();
-    std::getline(std::cin, buffer);
-    std::stringstream(buffer) >> address;
+    std::getline(std::cin, address);
+//    std::stringstream(buffer) >> address;
 
     std::cout << "Enter phone: " ;
-    std::cin.clear();
     std::getline(std::cin, buffer);
     std::stringstream(buffer) >> phone;
 
@@ -94,14 +85,12 @@ void Bank::creatAccount(){
               << "2. Current" << '\n'
               << "3. Fixed 1 Year" << '\n'
               << "4. Fixed 2 Year" << '\n'
-              << "5. Fixed 3 Year" << '\n';
-    std::cin.clear();
+              << "5. Fixed 3 Year" << std::endl;
     std::getline(std::cin, buffer);
     std::stringstream(buffer) >> selection;
     account_type = (acc_type)selection;
 
     std::cout << "Enter first deposit:" ;
-    std::cin.clear();
     std::getline(std::cin, buffer);
     std::stringstream(buffer) >> money;
 
@@ -152,6 +141,11 @@ void Bank::transaction(){
             std::getline(std::cin, buff);
             std::stringstream(buff) >> selection;
             par = (parameter)selection;
+
+            std::cout << "Enter amount: $";
+            std::getline(std::cin, buff);
+            std::stringstream(buff) >> quanta;
+
             accounts[i].transact(quanta, par);
             return;
         }
@@ -179,7 +173,7 @@ void Bank::erase(){
 //    std::remove_if( accounts.begin(), accounts.end(), search_id(id) );
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i].getID() == id){
-//            accounts.erase(accounts.begin()+i);
+            accounts.erase(accounts.begin()+i);
 //            accounts.erase();
 //            std::find(accounts.begin(), accounts.end(), );
 //            std::__find_if(accounts.begin(), accounts.end(),);
@@ -209,7 +203,7 @@ int Bank::search(){
     int id;
 
     std::cout << "Enter account ID (Number): ";
-    std::cin.clear();
+    std::cin.ignore();
     std::getline(std::cin, buff);
     std::stringstream(buff) >> id;
     return id;
@@ -222,6 +216,7 @@ bool Bank::search_id(int id){
     return false;
 }
 
+//This doesnt work I have to change to use c++ system defined dates
 dob Bank::string2dob(std::string buffer){
     int day, month, year;
     day = (int)buffer[0-1];

@@ -1,8 +1,6 @@
 #include "bank.hpp"
 
-//Should implement a Bank class for printing all accounts info in the bank.
 int main(){
-    /*
     dob my_birth(19, 10, 2001);
     dob lizbirth(23, 06, 2001);
     AccountHolder uriegas(100, "Eduardo Uriegas", my_birth, "1930526", "Mirlos", "8341567800", 200, SAVING);
@@ -15,7 +13,6 @@ int main(){
     lizbeth.transact(100, WITHDRAW);
 
     std::cout << uriegas << '\n' << lizbeth << std::endl;
-    */
 
    Bank bank;
    bank.menu();

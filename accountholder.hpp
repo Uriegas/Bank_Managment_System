@@ -1,9 +1,10 @@
 #include <iostream>
 
-enum parameter { WITHDRAW, DEPOSIT };
+enum parameter { WITHDRAW = 1, DEPOSIT };
 //Cannot deposit or withdraw in fixed accounts
-enum acc_type { SAVING, CURRENT, FIXED_1Y, FIXED_2Y, FIXED_3Y };
+enum acc_type { SAVING = 1, CURRENT, FIXED_1Y, FIXED_2Y, FIXED_3Y };
 
+//Day Of Birthday Class
 class dob{
 public:
     int day, month, year;
@@ -21,11 +22,12 @@ public:
     void edit(std::string new_address, std::string new_phone);
     //Withdraw and deposit function
     bool transact(float quantity, parameter par);
+    //For printing account type properly
+    friend std::ostream& operator<<(std::ostream& out, const acc_type& type);
     //Print detailed information function
     friend std::ostream& operator<<(std::ostream& out, const AccountHolder& account);
     //Print in list mode
     void toList();
-
     //Returns ID
     int getID();
 private:

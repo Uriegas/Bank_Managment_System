@@ -45,6 +45,30 @@ bool AccountHolder::transact(float quantity, parameter par){
         return false;
     return true;
 }
+//For printing account type properly
+std::ostream& operator<<(std::ostream& out, const acc_type& type){
+    switch(type){
+        case SAVING:
+            out << "SAVING";
+            break;
+        case CURRENT:
+            out << "SAVING";
+            break;
+        case FIXED_1Y:
+            out << "SAVING";
+            break;
+        case FIXED_2Y:
+            out << "SAVING";
+            break;
+        case FIXED_3Y:
+            out << "SAVING";
+            break;
+        default:
+            out << "NOT VALID ACCOUNT";
+            break;
+    }
+    return out;
+}
 
 //Print function
 std::ostream& operator<<(std::ostream& out, const AccountHolder& account){
@@ -58,7 +82,7 @@ std::ostream& operator<<(std::ostream& out, const AccountHolder& account){
         << "Account Type" << "\t\t" << account.account_type << '\n'
         << "Phone Number:" << "\t\t" << account.phone << '\n'
         //Balance of Deposit(+) and Withdraws(-). Same: Need current date.
-        << "Current Balance:" << '\t' << "$ " << account.money << '\n';
+        << "Current Balance:" << '\t' << "$" << account.money << '\n';
         return out;
 }
 
