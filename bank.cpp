@@ -217,12 +217,20 @@ bool Bank::search_id(int id){
     return false;
 }
 
-//This doesnt work I have to change to use c++ system defined dates
 dob Bank::string2dob(std::string buffer){
-    int day, month, year;
-    day = (int)buffer[0-1];
-    month = (int)buffer[3-4];
-    year = (int)buffer[6-9];
+    int date[3];
+    char delimiter = '/';
+    std::vector <std::string> strings;
+    std::string tmp;
+    std::stringstream stream(buffer);
 
-    return dob(day, month, year);
+    while( std::getline(stream, tmp, delimiter) )
+        strings.push_back(tmp);
+
+    for(int i = 0; i < strings.size(); i++)
+        std::stringstream(strings[i]) >> date[i];
+
+//    std::cout << "Date is: " << date[0] << '/' << date[1] << '/' << date[2] << '\n';
+
+    return dob(date[0], date[1], date[2]);
 }
