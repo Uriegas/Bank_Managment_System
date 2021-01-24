@@ -35,4 +35,7 @@ public:
     int search();
     //Search by id and returns bool
     bool search_id(int id);
+    //Converts string 2 account
+    void str2Account(std::string str);
+
 };

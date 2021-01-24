@@ -77,11 +77,9 @@ std::ostream& operator<<(std::ostream& out, const AccountHolder& account){
         << "AccountHolder Name:" << '\t' << account.name << '\n' 
         << "Date of Birthday:" << '\t' << account.dateofbirth << '\n'
         << "Citizenship Number:" << '\t' << account.citizenship_no << '\n'
-        //Pending to add age, need a function to read current date.
         << "Address:" << "\t\t" << account.address << '\n'
         << "Account Type" << "\t\t" << account.account_type << '\n'
         << "Phone Number:" << "\t\t" << account.phone << '\n'
-        //Balance of Deposit(+) and Withdraws(-). Same: Need current date.
         << "Current Balance:" << '\t' << "$" << account.money << '\n';
         return out;
 }

@@ -3,6 +3,21 @@
 int Bank::acc_number = 0;
 
 Bank::Bank(){
+    std::ifstream file;
+    file.open("accounts.txt", std::ios::in);
+
+    if( file.fail() ){
+        std::cerr << "Error: Cannot open the file!!!\n";
+    }
+    while( !file.eof() ){
+        //Every line in the file is an account object
+        std::string str;
+        std::getline(file, str, '\n');
+        std::cout << str;
+
+        str2Account(str);
+
+    }
 }
 
 int Bank::menu(){
@@ -255,4 +270,72 @@ dob Bank::string2dob(std::string buffer){
 //    std::cout << "Date is: " << date[0] << '/' << date[1] << '/' << date[2] << '\n';
 
     return dob(date[0], date[1], date[2]);
+}
+
+void Bank::str2Account(std::string str){
+    //Function convert string 2 accountholder object
+    std::string buffer;
+    int flag = 0;
+
+    //Account atributtes
+    int id;
+    std::string name;
+    dob dateofbirth;
+    std::string citizenship_no;
+    std::string address; 
+    std::string phone;
+    float money;
+    acc_type account_type;
+
+    for(int i = 0; i < str.length(); i++){
+        if(str[i] == '#'){
+            flag++;
+            switch (flag){
+                case 1:
+                    std::stringstream(buffer) >> id;
+                    std::cout << id;
+                    break;
+                case 2:
+                    name = buffer;
+                    std::cout << name;
+                    break;
+                case 3:
+                    dateofbirth = string2dob(buffer);
+                    std::cout << dateofbirth;
+                    break;
+                case 4:
+                    citizenship_no = buffer;
+                    std::cout << citizenship_no;
+                    break;
+                case 5:
+                    address = buffer;
+                    std::cout << address;
+                    break;
+                case 6:
+                    phone = buffer;
+                    std::cout << phone;
+                    break;
+                case 7:
+                    std::stringstream(buffer) >> money;
+                    std::cout << money;
+                    break;
+                case 8:{
+                    int tmp_acc;
+                    std::stringstream(buffer) >> tmp_acc;
+                    account_type = (acc_type)tmp_acc;
+                    std::cout << tmp_acc;
+                    break;
+                }
+            }
+            buffer.clear();
+            continue;
+        }
+        buffer += str[i];
+    }
+
+    //Increment counter of accounts
+    acc_number++;
+    //Create object Account
+    AccountHolder tmp(id, name, dateofbirth, citizenship_no, address, phone, money, account_type);
+    accounts.push_back(tmp);
 }
