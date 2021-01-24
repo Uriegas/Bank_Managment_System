@@ -1,12 +1,17 @@
 #include "bank.hpp"
 
+int Bank::acc_number = 0;
+
+Bank::Bank(){
+}
+
 int Bank::menu(){
     std::string buffer;
     int option;
 
     while (true){
         buffer.empty();
-        std::cout << "****************Banking Managment System****************" << '\n'
+        std::cout << "\n****************Banking Managment System****************" << '\n'
                 << "Select the action(Input Number)." << '\n'
                 << "1. Create New Accout" << '\n'
                 << "2. Update information of existing accout" << '\n'
@@ -94,7 +99,10 @@ void Bank::creatAccount(){
     std::getline(std::cin, buffer);
     std::stringstream(buffer) >> money;
 
-    AccountHolder tmp(001, name, dateofbirth, citizenship_no, address, phone, money, account_type);
+    //Increment counter of accounts
+    acc_number++;
+    //Create object Account
+    AccountHolder tmp(acc_number, name, dateofbirth, citizenship_no, address, phone, money, account_type);
 //    accounts.insert(std::pair<int, AccountHolder>(001, tmp));
     accounts.push_back(tmp);
 
@@ -108,8 +116,7 @@ void Bank::updateAccount(){
 
             std::cout << "\nPlease enter the new address: ";
             std::cin.clear();
-            std::getline(std::cin, buff);
-            std::stringstream(buff) >> new_address;
+            std::getline(std::cin, new_address);
 
             std::cout << "Please enter the new phone number: ";
             std::cin.clear();
@@ -166,19 +173,13 @@ void Bank::details(){
     std::cout << "Account not found!!!";
 }
 
-//This functions doesnt work yet
 //Erase an specific account
 void Bank::erase(){
     int id = search();
-//    std::remove_if( accounts.begin(), accounts.end(), search_id(id) );
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i].getID() == id){
             accounts.erase(accounts.begin()+i);
-//            accounts.erase();
-//            std::find(accounts.begin(), accounts.end(), );
-//            std::__find_if(accounts.begin(), accounts.end(),);
-//            std::remove_if( accounts.begin(), accounts.end(), search_id(id) );
-            std::cout << accounts[i];
+            std::cout << "\nAccount " << accounts[i].getID() << "erased";
             return;
         }
     }
@@ -203,7 +204,7 @@ int Bank::search(){
     int id;
 
     std::cout << "Enter account ID (Number): ";
-    std::cin.ignore();
+    std::cin.clear();
     std::getline(std::cin, buff);
     std::stringstream(buff) >> id;
     return id;

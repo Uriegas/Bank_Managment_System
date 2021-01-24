@@ -7,10 +7,12 @@
 
 class Bank{
 private:
-    //Current accounts loaded in program
     std::vector<AccountHolder> accounts;
-//    std::hash<AccountHolder> acc;
+    static int acc_number;
+
 public:
+    //Initialize clients.dat
+    Bank();
     int menu();
     //Create account interface
     void creatAccount();
