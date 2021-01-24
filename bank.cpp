@@ -189,7 +189,7 @@ void Bank::erase(){
 //Print all accounts
 void Bank::viewlist(){
     if( !accounts.empty() ){
-        std::cout << "\nList of Accounts.\n";
+        std::cout << "\nAccount List:\n";
         for(int i = 0; i < accounts.size(); i++){
             accounts[i].toList();
         }
@@ -202,11 +202,33 @@ void Bank::viewlist(){
 int Bank::search(){
     std::string buff;
     int id;
+    int select = 0;
 
-    std::cout << "Enter account ID (Number): ";
-    std::cin.clear();
-    std::getline(std::cin, buff);
-    std::stringstream(buff) >> id;
+    while(select != 1 && select != 2){
+        std::cout << "Search by:\n"
+                    << "1. id\n"
+                    << "2. name\n>";
+        std::cin.clear();
+        std::getline(std::cin, buff);
+        std::stringstream(buff) >> select;
+    }
+
+    if(select == 1){
+        std::cout << "Enter account ID (Number): ";
+        std::cin.clear();
+        std::getline(std::cin, buff);
+        std::stringstream(buff) >> id;
+    }
+    else{
+        std::cout << "Enter account name to search for: ";
+        std::cin.clear();
+        std::getline(std::cin, buff);
+        for(int i = 0; i < accounts.size(); i++){
+            if(buff == accounts[i].getName()){//Same name verification not implemented
+                id = accounts[i].getID();
+            }
+        }
+    }
     return id;
 }
 

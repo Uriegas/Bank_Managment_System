@@ -30,6 +30,8 @@ public:
     void toList();
     //Returns ID
     int getID();
+    //Returns name
+    std::string getName();
 private:
     //Provided by the user
     std::string name;

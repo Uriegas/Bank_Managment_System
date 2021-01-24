@@ -95,3 +95,8 @@ void AccountHolder::toList(){
 int AccountHolder::getID(){
     return this->id;
 }
+
+//Returns name
+std::string AccountHolder::getName(){
+    return this->name;
+}
