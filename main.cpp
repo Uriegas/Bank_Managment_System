@@ -10,11 +10,13 @@ int main(){
     std::cout << uriegas << '\n' << lizbeth << std::endl;
 
     uriegas.edit("Los Mirlos 1122", "8394018745");
-    std::cout << uriegas << std::endl;
+    uriegas.printAccount();
+//    std::cout << uriegas << std::endl;
 
     lizbeth.transact(100, WITHDRAW);
 
-    std::cout << uriegas << '\n' << lizbeth << std::endl;
+//    std::cout << uriegas << '\n' << lizbeth << std::endl;
+    lizbeth.printAccount();
     */
 
    Bank bank;

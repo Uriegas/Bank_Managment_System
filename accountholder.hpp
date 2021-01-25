@@ -25,7 +25,9 @@ public:
     //For printing account type properly
     friend std::ostream& operator<<(std::ostream& out, const acc_type& type);
     //Print detailed information function
-    friend std::ostream& operator<<(std::ostream& out, const AccountHolder& account);
+    void printAccount();
+    //Print to file
+    friend std::ostream& operator<<(std::ostream& out, const AccountHolder& a);
     //Print in list mode
     void toList();
     //Returns ID

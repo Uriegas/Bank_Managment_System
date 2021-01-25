@@ -5,19 +5,35 @@ int Bank::acc_number = 0;
 Bank::Bank(){
     std::ifstream file;
     file.open("accounts.txt", std::ios::in);
+    //Every line in the file is an account object
+    std::string str;
 
     if( file.fail() ){
         std::cerr << "Error: Cannot open the file!!!\n";
     }
     while( !file.eof() ){
-        //Every line in the file is an account object
-        std::string str;
+        str.clear();
         std::getline(file, str, '\n');
         std::cout << str;
 
-        str2Account(str);
-
+        if(!str.empty())
+            str2Account(str);
     }
+}
+
+//Load accounts to file
+Bank::~Bank(){
+    std::ofstream file("accounts.txt", std::ios::out);
+    if(file.is_open()){
+        for(int i = 0; i < accounts.size(); i++){
+            file << accounts[i];
+        }
+    }
+    else{
+        std::cout << "ERROR: COULDN'T OPEN FILE\n";
+    }
+    
+    file.close();
 }
 
 int Bank::menu(){
@@ -181,7 +197,7 @@ void Bank::details(){
     
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i].getID() == id){
-            std::cout << accounts[i];
+            accounts[i].printAccount();
             return;
         }
     }

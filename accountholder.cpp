@@ -49,39 +49,65 @@ bool AccountHolder::transact(float quantity, parameter par){
 std::ostream& operator<<(std::ostream& out, const acc_type& type){
     switch(type){
         case SAVING:
-            out << "SAVING";
+            out << "1";
             break;
         case CURRENT:
-            out << "SAVING";
+            out << "2";
             break;
         case FIXED_1Y:
-            out << "SAVING";
+            out << "3";
             break;
         case FIXED_2Y:
-            out << "SAVING";
+            out << "4";
             break;
         case FIXED_3Y:
-            out << "SAVING";
+            out << "5";
             break;
         default:
-            out << "NOT VALID ACCOUNT";
+            out << "-1";
             break;
     }
     return out;
 }
 
 //Print function
-std::ostream& operator<<(std::ostream& out, const AccountHolder& account){
-    out << "***************Detailed Information of Account****************" << '\n'
-        << "Account Number:" << '\t' << account.id << '\n'
-        << "AccountHolder Name:" << '\t' << account.name << '\n' 
-        << "Date of Birthday:" << '\t' << account.dateofbirth << '\n'
-        << "Citizenship Number:" << '\t' << account.citizenship_no << '\n'
-        << "Address:" << "\t\t" << account.address << '\n'
-        << "Account Type" << "\t\t" << account.account_type << '\n'
-        << "Phone Number:" << "\t\t" << account.phone << '\n'
-        << "Current Balance:" << '\t' << "$" << account.money << '\n';
-        return out;
+std::ostream& operator<<(std::ostream& out, const AccountHolder& a){
+    out << a.id << '#' << a.name << '#' << a.dateofbirth << '#' << a.citizenship_no << '#'
+        << a.address << '#' << a.phone << '#' << a.money << '#' << a.account_type << "#\n";
+    return out;
+}
+
+void AccountHolder::printAccount(){
+    std::cout << "***************Detailed Information of Account****************" << '\n'
+        << "Account Number:" << '\t' << id << '\n'
+        << "AccountHolder Name:" << '\t' << name << '\n' 
+        << "Date of Birthday:" << '\t' << dateofbirth << '\n'
+        << "Citizenship Number:" << '\t' << citizenship_no << '\n'
+        << "Address:" << "\t\t" << address << '\n'
+        << "Account Type" << "\t\t";
+
+    switch(account_type){
+        case SAVING:
+            std::cout << "SAVING";
+            break;
+        case CURRENT:
+            std::cout << "CURRENT";
+            break;
+        case FIXED_1Y:
+            std::cout << "FIXED_1Y";
+            break;
+        case FIXED_2Y:
+            std::cout << "FIXED_2Y";
+            break;
+        case FIXED_3Y:
+            std::cout << "FIXED_3Y";
+            break;
+        default:
+            std::cout << "NOT VALID ACCOUNT";
+            break;
+    }
+    std::cout << "\nPhone Number:" << "\t\t" << phone << '\n'
+              << "Current Balance:" << '\t' << "$" << money << '\n';
 }
 
 //Print in list mode

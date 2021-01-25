@@ -11,6 +11,8 @@ private:
 public:
     //Initialize clients.dat
     Bank();
+    //Load accounts to file
+    ~Bank();
     int menu();
     //Create account interface
     void creatAccount();
