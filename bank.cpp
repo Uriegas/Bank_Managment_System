@@ -9,15 +9,17 @@ Bank::Bank(){
     std::string str;
 
     if( file.fail() ){
-        std::cerr << "Error: Cannot open the file!!!\n";
+        std::cerr << "Creating empty file";
+        std::ofstream output("accounts.txt");
     }
-    while( !file.eof() ){
-        str.clear();
-        std::getline(file, str, '\n');
-        std::cout << str;
+    else{
+        while( !file.eof() ){
+            str.clear();
+            std::getline(file, str, '\n');
 
-        if(!str.empty())
-            str2Account(str);
+            if(!str.empty())
+                str2Account(str);
+        }
     }
 }
 
@@ -309,37 +311,29 @@ void Bank::str2Account(std::string str){
             switch (flag){
                 case 1:
                     std::stringstream(buffer) >> id;
-                    std::cout << id;
                     break;
                 case 2:
                     name = buffer;
-                    std::cout << name;
                     break;
                 case 3:
                     dateofbirth = string2dob(buffer);
-                    std::cout << dateofbirth;
                     break;
                 case 4:
                     citizenship_no = buffer;
-                    std::cout << citizenship_no;
                     break;
                 case 5:
                     address = buffer;
-                    std::cout << address;
                     break;
                 case 6:
                     phone = buffer;
-                    std::cout << phone;
                     break;
                 case 7:
                     std::stringstream(buffer) >> money;
-                    std::cout << money;
                     break;
                 case 8:{
                     int tmp_acc;
                     std::stringstream(buffer) >> tmp_acc;
                     account_type = (acc_type)tmp_acc;
-                    std::cout << tmp_acc;
                     break;
                 }
             }

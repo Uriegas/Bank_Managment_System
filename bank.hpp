@@ -27,11 +27,6 @@ public:
     //Print all accounts
     void viewlist();
 
-    /*
-    //Helper functions
-    //Loads accounts in file
-    void loadAccounts();
-    */
     dob string2dob(std::string buffer);
     //Search account interface
     int search();
