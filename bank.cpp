@@ -138,7 +138,6 @@ void Bank::creatAccount(){
     AccountHolder tmp(acc_number, name, dateofbirth, citizenship_no, address, phone, money, account_type);
 //    accounts.insert(std::pair<int, AccountHolder>(001, tmp));
     accounts.push_back(tmp);
-
 }
 
 void Bank::updateAccount(){ 
